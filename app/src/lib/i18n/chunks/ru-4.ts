@@ -363,6 +363,9 @@ const ru4: TranslationMap = {
   'settings.billing.subscription.paymentConfirmed': 'Оплата подтверждена',
   'settings.billing.subscription.perMonth': 'В месяц',
   'settings.billing.subscription.popular': 'Популярное',
+  'pages.settings.account.migration': 'Импорт из другого ассистента',
+  'pages.settings.account.migrationDesc':
+    'Перенесите память и заметки из OpenClaw (а вскоре и Hermes) в это рабочее пространство.',
 };
 
 export default ru4;

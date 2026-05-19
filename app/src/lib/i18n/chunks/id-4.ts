@@ -364,6 +364,9 @@ const id4: TranslationMap = {
   'settings.billing.subscription.paymentConfirmed': 'Pembayaran dikonfirmasi',
   'settings.billing.subscription.perMonth': 'Per bulan',
   'settings.billing.subscription.popular': 'Populer',
+  'pages.settings.account.migration': 'Impor dari asisten lain',
+  'pages.settings.account.migrationDesc':
+    'Migrasikan memori dan catatan dari OpenClaw (dan, segera, Hermes) ke ruang kerja ini.',
 };
 
 export default id4;
