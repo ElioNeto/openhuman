@@ -235,11 +235,33 @@ pub async fn rpc_auth_middleware(req: axum::extract::Request, next: Next) -> Res
         .into_response()
 }
 
-/// Single source of truth for token comparison. Hex tokens of fixed length
-/// make the comparison non-secret-shaped, but we still pin a deliberate
-/// helper so adding constant-time semantics later is a one-line change.
+/// Single source of truth for token comparison. Uses constant-time
+/// comparison to prevent timing attacks on localhost (where latency
+/// jitter is minimal and a timing attack is feasible).
+///
+/// Hex tokens of fixed length (64 hex chars = 256 bits) mean the
+/// early length-inequality check leaks no useful information — all
+/// valid tokens share the same length.
 fn bearer_matches(supplied: &str, expected: &str) -> bool {
-    !supplied.is_empty() && supplied == expected
+    if supplied.is_empty() {
+        return false;
+    }
+    if supplied.len() != expected.len() {
+        return false;
+    }
+    // Constant-time byte comparison — every byte is XORed and ORed
+    // together regardless of whether a mismatch has been found.
+    // This prevents timing attacks that exploit short-circuit
+    // evaluation (the issue this function fixes).
+    let mut result: u8 = 0;
+    for (x, y) in supplied.as_bytes().iter().zip(expected.as_bytes()) {
+        result |= x ^ y;
+    }
+    // Compiler fence prevents the optimizer from eliding the loop
+    // when result is trivially predictable (e.g. when both token
+    // halves are known at compile time in test binaries).
+    std::sync::atomic::compiler_fence(std::sync::atomic::Ordering::SeqCst);
+    result == 0
 }
 
 fn is_external_inference_path(path: &str) -> bool {
