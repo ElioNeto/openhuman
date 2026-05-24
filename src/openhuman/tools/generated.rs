@@ -3,13 +3,20 @@
 //! This module gives trusted profile/runtime layers a narrow way to
 //! expose generated capability tools without adding a bespoke Rust type
 //! for each tool and without handing the model a broad raw bridge.
+//!
+//! Generated tools may carry [`ToolProvenance`] metadata (see
+//! [`super::provenance`]) that documents which capability provider
+//! generated the tool, its risk level, and policy surface. The
+//! [`AdmissionGate`] validates this metadata before the tool enters the
+//! registry when enforcement is enabled.
 
 use std::sync::Arc;
 
 use async_trait::async_trait;
 use serde_json::Value;
 
-use crate::openhuman::tools::traits::{PermissionLevel, Tool, ToolCategory, ToolResult, ToolScope};
+use super::provenance::ToolProvenance;
+use super::traits::{PermissionLevel, Tool, ToolCategory, ToolResult, ToolScope};
 
 #[derive(Debug, Clone)]
 pub struct GeneratedToolDefinition {
@@ -20,6 +27,15 @@ pub struct GeneratedToolDefinition {
     pub category: ToolCategory,
     pub scope: ToolScope,
     pub adapter_id: String,
+    /// Optional provenance metadata identifying the capability provider
+    /// that generated this tool, its risk level, and policy surface.
+    ///
+    /// When [`super::provenance::AdmissionGate`] enforcement is enabled,
+    /// tools without provenance are rejected. When enforcement is disabled
+    /// (default), tools without provenance pass through for backward
+    /// compatibility.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub provenance: Option<ToolProvenance>,
 }
 
 impl GeneratedToolDefinition {
@@ -37,7 +53,14 @@ impl GeneratedToolDefinition {
             category: ToolCategory::Skill,
             scope: ToolScope::All,
             adapter_id: adapter_id.into(),
+            provenance: None,
         }
+    }
+
+    /// Attach provenance metadata to this definition.
+    pub fn with_provenance(mut self, provenance: ToolProvenance) -> Self {
+        self.provenance = Some(provenance);
+        self
     }
 }
 
@@ -268,5 +291,35 @@ mod tests {
         assert_eq!(tool.name(), "send_update");
         assert_eq!(tool.description(), "Send a scoped update.");
         assert_eq!(tool.definition().adapter_id, "echo-adapter");
+    }
+
+    #[test]
+    fn generated_tool_can_carry_provenance() {
+        use crate::openhuman::capability_provider::ProviderId;
+        use crate::openhuman::tools::provenance::{PolicySurface, ToolProvenance, ToolRiskLevel};
+
+        let provenance = ToolProvenance {
+            provider_id: ProviderId::new("test-provider").unwrap(),
+            capability_id: Some("send-message".into()),
+            source_digest: None,
+            risk_level: ToolRiskLevel::Medium,
+            policy_surface: PolicySurface::None,
+        };
+
+        let definition = sample_definition().with_provenance(provenance);
+        assert!(definition.provenance.is_some());
+        assert_eq!(
+            definition
+                .provenance
+                .as_ref()
+                .unwrap()
+                .capability_id
+                .as_deref(),
+            Some("send-message")
+        );
+
+        let tool = GeneratedTool::new(definition, Arc::new(EchoAdapter)).unwrap();
+        let stored = tool.definition().provenance.as_ref().unwrap();
+        assert_eq!(stored.capability_id.as_deref(), Some("send-message"));
     }
 }
