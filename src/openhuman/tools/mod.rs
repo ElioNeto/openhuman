@@ -1,7 +1,6 @@
 pub mod generated;
 pub mod local_cli;
-pub mod ops;
-pub mod orchestrator_tools;
+pub mod policy;
 pub mod provenance;
 pub mod schema;
 mod schemas;
