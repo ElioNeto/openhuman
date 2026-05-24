@@ -24,6 +24,7 @@ pub mod approval;
 pub mod audio_toolkit;
 pub mod autocomplete;
 pub mod billing;
+pub mod capability_provider;
 pub mod channels;
 pub mod composio;
 pub mod config;
