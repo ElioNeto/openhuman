@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "dev:web": "vite",
-    "dev:app": "pnpm tauri:ensure && export CEF_PATH=\"$HOME/Library/Caches/tauri-cef\" && bash ../scripts/setup-chromium-safe-storage.sh && eval \"$(bash ../scripts/load-dotenv.sh)\" && APPLE_SIGNING_IDENTITY='OpenHuman Dev Signer' cargo tauri dev",
+    "dev:app": "pnpm tauri:ensure && export CEF_PATH=\"$HOME/Library/Caches/tauri-cef\" && bash ../scripts/setup-chromium-safe-storage.sh && eval \"$(bash ../scripts/load-dotenv.sh)\" && export LD_LIBRARY_PATH=\"$(ls -d \"$CEF_PATH\"/*/cef_linux_x86_64 2>/dev/null | head -1):${LD_LIBRARY_PATH:-}\" && APPLE_SIGNING_IDENTITY='OpenHuman Dev Signer' cargo tauri dev",
     "dev:app:win": "\"C:/Program Files/Git/bin/bash.exe\" ../scripts/run-dev-win.sh",
     "dev:cef": "pnpm dev:app",
     "dev:wry": "pnpm tauri:ensure && export CEF_PATH=\"$HOME/Library/Caches/tauri-cef\" && eval \"$(bash ../scripts/load-dotenv.sh)\" && cargo tauri dev --no-default-features --features wry",
