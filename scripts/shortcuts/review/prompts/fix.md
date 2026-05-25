@@ -58,7 +58,7 @@ Run a CodeRabbit-style review against these axes:
 
 **Correctness** — logic bugs, off-by-one, null/undefined, async/await misuse, race conditions, error propagation (`Result<T>` / `RpcOutcome<T>`).
 
-**Project standards** (from `CLAUDE.md`)
+**Project standards** (from `AGENTS.md`)
 - New Rust functionality under `src/openhuman/<domain>/`, not root-level `.rs` files.
 - Domain exposure via `schemas.rs` + registry — not ad-hoc branches in `src/core/cli.rs` / `src/core/jsonrpc.rs`.
 - No dynamic `import()` in production `app/src` code.

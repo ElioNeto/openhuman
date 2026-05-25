@@ -29,7 +29,7 @@ and `pnpm work start 1234 …` are equivalent.
    max 40 chars). If the branch already exists it's checked out and `main`
    is merged in.
 4. Hands off to the agent CLI with a prompt containing the issue body,
-   repo conventions pointers (CLAUDE.md / AGENTS.md), and any trailing
+   repo conventions pointers (AGENTS.md), and any trailing
    `extra-prompt`. For `--agent codex`, the handoff uses
    `codex exec --dangerously-bypass-approvals-and-sandbox`. For
    `--agent cursor` or `--agent cursor-agent`, it uses

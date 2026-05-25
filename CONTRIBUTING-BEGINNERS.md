@@ -404,7 +404,6 @@ I want to make my first contribution to OpenHuman. First read these upstream doc
 
 CONTRIBUTING.md: https://raw.githubusercontent.com/tinyhumansai/openhuman/main/CONTRIBUTING.md
 AGENTS.md: https://raw.githubusercontent.com/tinyhumansai/openhuman/main/AGENTS.md
-CLAUDE.md: https://raw.githubusercontent.com/tinyhumansai/openhuman/main/CLAUDE.md
 
 If you can see the cloned repo locally, also read those files directly from the repo. Then guide me step by step: verify my tools, install dependencies, initialize submodules, create a branch, make the smallest safe change for my issue, run the right checks, and prepare a PR. Do not skip failed checks; explain any blocked command with the exact command and error.
 ```

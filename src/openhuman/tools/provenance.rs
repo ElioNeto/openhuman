@@ -33,10 +33,11 @@ use crate::openhuman::capability_provider::{
 // ---------------------------------------------------------------------------
 
 /// Risk level for a generated tool, based on the capabilities it exposes.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ToolRiskLevel {
     /// Read-only information retrieval — low risk.
+    #[default]
     Low,
     /// Moderate side effects (e.g. file reads, search queries).
     Medium,
@@ -63,10 +64,11 @@ impl ToolRiskLevel {
 // ---------------------------------------------------------------------------
 
 /// Which policy controls apply to this tool.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum PolicySurface {
     /// Standard tool — no special policy surface.
+    #[default]
     None,
     /// Tool performs file system reads or writes.
     FileSystem,
@@ -238,10 +240,10 @@ impl AdmissionGate {
     }
 
     /// Batch-check multiple definitions, collecting diagnostics.
-    pub fn admit_all(
+    pub fn admit_all<'a>(
         &self,
-        definitions: &[GeneratedToolDefinition],
-    ) -> (Vec<AdmissionDiagnostic>, Vec<&GeneratedToolDefinition>) {
+        definitions: &'a [GeneratedToolDefinition],
+    ) -> (Vec<AdmissionDiagnostic>, Vec<&'a GeneratedToolDefinition>) {
         let mut diagnostics = Vec::with_capacity(definitions.len());
         let mut admitted = Vec::new();
 

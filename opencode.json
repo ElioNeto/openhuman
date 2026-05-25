@@ -1,0 +1,155 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "god",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "mcp": {
+    "alphahuman": {
+      "type": "http",
+      "url": "https://openhuman.readme.io/mcp",
+      "enabled": true
+    }
+  },
+  "command": {
+    "dev": {
+      "description": "Start Vite dev server on port 1420",
+      "prompt": "Run `pnpm dev` from repo root to start Vite-only frontend dev server on port 1420."
+    },
+    "dev:app": {
+      "description": "Start full Tauri desktop with CEF",
+      "prompt": "Run `pnpm dev:app` from repo root. Starts full Tauri desktop with CEF runtime. Requires git submodules and vendored tauri-cli."
+    },
+    "dev:core": {
+      "description": "Start standalone core for debugging",
+      "prompt": "Run `OPENHUMAN_APP_ENV=staging ./target/debug/openhuman-core serve` from repo root. Use TOKEN from `~/.openhuman-staging/core.token` to test with curl."
+    },
+    "typecheck": {
+      "description": "Run TypeScript type checking (tsc --noEmit)",
+      "prompt": "Run `pnpm typecheck` from repo root."
+    },
+    "lint": {
+      "description": "Run ESLint across the project",
+      "prompt": "Run `pnpm lint` from repo root."
+    },
+    "format": {
+      "description": "Format code with Prettier + cargo fmt",
+      "prompt": "Run `pnpm format` from repo root."
+    },
+    "format:check": {
+      "description": "Check formatting with Prettier + cargo fmt --check",
+      "prompt": "Run `pnpm format:check` from repo root."
+    },
+    "test": {
+      "description": "Run Vitest tests (app workspace)",
+      "prompt": "Run `pnpm test` from repo root. Runs Vitest (1000+ tests)."
+    },
+    "test:coverage": {
+      "description": "Run Vitest with coverage",
+      "prompt": "Run `pnpm test:coverage` from repo root."
+    },
+    "test:rust": {
+      "description": "Run Rust tests via mock script",
+      "prompt": "Run `pnpm test:rust` from repo root. Executes scripts/test-rust-with-mock.sh (5600+ tests)."
+    },
+    "test:rust:e2e": {
+      "description": "Run Rust integration tests (json_rpc_e2e)",
+      "prompt": "Run `pnpm test:rust:e2e` from repo root."
+    },
+    "test:e2e": {
+      "description": "Run E2E tests (build + login + auth)",
+      "prompt": "Run `pnpm test:e2e` from repo root."
+    },
+    "test:all": {
+      "description": "Run all tests: coverage + rust + e2e",
+      "prompt": "Run `pnpm test:all` from repo root."
+    },
+    "rust:check": {
+      "description": "Check Rust compilation (both crates)",
+      "prompt": "Run `cargo check --manifest-path Cargo.toml` for core and `cargo check --manifest-path app/src-tauri/Cargo.toml` for Tauri shell."
+    },
+    "rust:build": {
+      "description": "Build openhuman-core binary",
+      "prompt": "Run `cargo build --manifest-path Cargo.toml --bin openhuman-core`."
+    },
+    "rust:test": {
+      "description": "Run core unit tests",
+      "prompt": "Run `cargo test -p openhuman` from repo root (5600+ tests)."
+    },
+    "git:status": {
+      "description": "Show working tree status + diff summary",
+      "prompt": "Run `git status` and `git diff --stat`."
+    },
+    "mock:api": {
+      "description": "Start mock API server on :18473",
+      "prompt": "Run `pnpm mock:api` from repo root."
+    }
+  },
+  "agent": {
+    "god": {
+      "description": "Omnipotent agent with unrestricted access to all tools and permissions"
+    },
+    "delivery-loop": {
+      "description": "Autonomous pipeline that continuously resolves open GitHub issues through Plan-Implement-Validate-Review cycle"
+    },
+    "general": {
+      "description": "General-purpose agent for researching complex questions and executing multi-step tasks"
+    },
+    "explore": {
+      "description": "Fast agent specialized for exploring codebases"
+    },
+    "rust-dev": {
+      "description": "Rust development specialist for openhuman-core domain modules, JSON-RPC handlers, and event bus patterns"
+    },
+    "frontend-dev": {
+      "description": "Frontend specialist for React + Tauri UI, Redux, i18n, and Vitest"
+    },
+    "test-agent": {
+      "description": "Testing specialist — manages Vitest, Rust tests, and E2E specs"
+    },
+    "reviewer": {
+      "description": "PR reviewer — checks tests, typecheck, lint, and formatting"
+    },
+    "docs-agent": {
+      "description": "Documentation specialist for AGENTS.md, gitbooks, and inline docs"
+    }
+  },
+  "provider": {
+    "opencode": {
+      "options": {}
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "git *": "allow",
+      "cargo *": "allow",
+      "rustup *": "allow",
+      "pnpm *": "allow",
+      "npm *": "allow",
+      "npx *": "allow",
+      "gh *": "allow",
+      "ls *": "allow",
+      "mkdir *": "allow",
+      "cp *": "allow",
+      "mv *": "allow",
+      "sleep *": "allow",
+      "which *": "allow",
+      "docker *": "allow",
+      "psql *": "allow",
+      "*": "ask"
+    },
+    "external_directory": {
+      "/tmp/teamcode": "allow",
+      "*": "ask"
+    }
+  },
+  "tool_output": {
+    "max_lines": 200,
+    "max_bytes": 16384
+  },
+  "compaction": {
+    "auto": true,
+    "tail_turns": 15
+  }
+}

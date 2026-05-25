@@ -25,7 +25,7 @@ import { YellowMascotIdle } from '../human/Mascot/yellow/MascotIdle';
  *
  * ## Why the mascot lives here, not in the Meet webview
  *
- * `CLAUDE.md` rules out growing JS injection into CEF child webviews.
+ * `AGENTS.md` rules out growing JS injection into CEF child webviews.
  * The Remotion runtime + composition tree is too large to inject and
  * would run inside a third-party origin sandbox; that's a non-starter.
  * Instead the rich animation lives in our own renderer (where Remotion

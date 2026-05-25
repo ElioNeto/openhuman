@@ -79,7 +79,7 @@ Vendored 运行时位于 [`app/src-tauri/vendor/tauri-cef/`](https://github.com/
 
 ## "不注入新 JS" 规则
 
-规则记录在 [`CLAUDE.md`](../../CLAUDE.md) 中：**迁移的提供商以零注入 JavaScript 加载**。所有抓取都通过扫描器侧的 CDP 原生进行。
+规则记录在 [`AGENTS.md`](../../AGENTS.md) 中：**迁移的提供商以零注入 JavaScript 加载**。所有抓取都通过扫描器侧的 CDP 原生进行。
 
 这很重要，因为任何在第三方来源内部运行的宿主控制代码都是攻击面责任。Slack 内部的持久 JS 桥接离失效只有一个 Slack 更新之遥，离通过攻击者控制的 JS 泄露桥接只有一个错误之遥。从渲染器外部的 CDP 严格更好。
 
@@ -169,4 +169,4 @@ CEF 的 `CefRequestHandler` 已经允许我们拦截网络请求。从"拦截并
 ## 另请参阅
 
 * [`docs/TAURI_CEF_FINDINGS_AND_CHANGES.md`](../../docs/TAURI_CEF_FINDINGS_AND_CHANGES.md)。通知权限深度解析。
-* [`CLAUDE.md`](../../CLAUDE.md)。权威的"不注入新 JS"规则。
+* [`AGENTS.md`](../../AGENTS.md)。权威的"不注入新 JS"规则。

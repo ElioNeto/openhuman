@@ -162,4 +162,4 @@ All scripts are in [`scripts/agent-batch/`](../../scripts/agent-batch/). They ar
 - [`pilot-batch-example.json`](pilot-batch-example.json) — canonical example with 3 disjoint agents.
 - [`scripts/agent-batch/`](../../scripts/agent-batch/) — validate / overlap / launch / status implementations + `node:test` suites.
 - [`codex-pr-checklist.md`](codex-pr-checklist.md) — parent checklist; per-agent rules inherit from it.
-- [`AGENTS.md`](../../AGENTS.md) and [`CLAUDE.md`](../../CLAUDE.md) — repo-wide rules every agent must follow.
+- [`AGENTS.md`](../../AGENTS.md) — repo-wide rules every agent must follow.

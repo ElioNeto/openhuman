@@ -12,7 +12,7 @@ interface ChunkModule {
 /**
  * Eagerly imported chunk modules — Vite turns the glob into a static map at
  * build time, so this works in both Vitest and production builds (no dynamic
- * import() at runtime, which CLAUDE.md forbids in app/src code).
+ * import() at runtime, which AGENTS.md forbids in app/src code).
  */
 const chunkModules = import.meta.glob<ChunkModule>('../chunks/*.ts', { eager: true });
 

@@ -46,7 +46,14 @@ if [[ -f "$CRATES_TOML" ]] && grep -q "tauri-cli.*$VENDOR_CLI" "$CRATES_TOML" 2>
     # Reinstall if any vendored tauri-cef source is newer than the installed CLI.
     # This is required because helper apps are embedded at tauri-bundler build time,
     # so edits under vendor/tauri-cef are not picked up unless cargo-tauri itself is rebuilt.
-    if find "$ROOT_DIR/app/src-tauri/vendor/tauri-cef" -type f -newer "$INSTALLED_CARGO_TAURI" | grep -q .; then
+    # Exclude target/ and .git/ artifacts — they are updated every build and
+    # would trigger a spurious reinstall every time.
+    if find "$ROOT_DIR/app/src-tauri/vendor/tauri-cef" \
+      -type f \
+      -not -path "*/target/*" \
+      -not -path "*/.git/*" \
+      -newer "$INSTALLED_CARGO_TAURI" \
+      | grep -q .; then
       echo "[ensure-tauri-cli] vendored tauri-cef changed since cargo-tauri was installed; reinstalling"
     else
       exit 0

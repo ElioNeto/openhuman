@@ -84,11 +84,12 @@ impl TryFrom<String> for ProviderId {
 }
 
 /// Trust classification for a capability provider.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ProviderTrustState {
     /// Provider is trusted — generated tools from this provider may be
     /// automatically admitted when admission enforcement is enabled.
+    #[default]
     Trusted,
     /// Provider is untrusted — generated tools require explicit approval
     /// or are denied, depending on policy configuration.
@@ -102,10 +103,11 @@ impl ProviderTrustState {
 }
 
 /// Operational state for a capability provider.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum ProviderEnabledState {
     /// Provider is enabled — its tools may be registered and called.
+    #[default]
     Enabled,
     /// Provider is disabled — its tools are not available for execution.
     Disabled,

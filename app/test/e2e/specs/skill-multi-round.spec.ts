@@ -6,7 +6,7 @@
  * we verify the shell route mounts post-login.
  *
  * NOTE: the unified chat surface lives at `/chat` (the old `/conversations`
- * route was retired — see CLAUDE.md). This spec is updated accordingly.
+ * route was retired — see AGENTS.md). This spec is updated accordingly.
  */
 import { waitForApp } from '../helpers/app-helpers';
 import { textExists } from '../helpers/element-helpers';

@@ -4,7 +4,7 @@ Thank you for your interest in contributing to OpenHuman. This guide is the fast
 
 > **New to open source or coding?** Start with [`CONTRIBUTING-BEGINNERS.md`](CONTRIBUTING-BEGINNERS.md) — it walks you through every step from installing tools to opening your first PR.
 
-For deeper architecture and subsystem references, use the GitBook under [`gitbooks/developing/`](gitbooks/developing/). For coding-agent and repository-specific implementation rules, see [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md).
+For deeper architecture and subsystem references, use the GitBook under [`gitbooks/developing/`](gitbooks/developing/). For coding-agent and repository-specific implementation rules, see [`AGENTS.md`](AGENTS.md).
 
 ## Table of Contents
 
@@ -247,7 +247,7 @@ openhuman/
 ├── gitbooks/developing/    # Contributor-facing architecture and setup guides
 ├── scripts/                # Dev, test, debug, and automation scripts
 ├── AGENTS.md               # Coding-agent repo rules
-└── CLAUDE.md               # Additional contributor and workflow guidance
+└── .teamcode/              # OpenCode/TeamCode config (agents, skills, plugins)
 ```
 
 Short version:

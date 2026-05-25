@@ -34,7 +34,6 @@ pub struct GeneratedToolDefinition {
     /// tools without provenance are rejected. When enforcement is disabled
     /// (default), tools without provenance pass through for backward
     /// compatibility.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub provenance: Option<ToolProvenance>,
 }
 

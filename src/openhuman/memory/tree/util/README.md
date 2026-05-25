@@ -9,4 +9,4 @@ Shared utility helpers used across the memory-tree subsystem. Kept pure-function
 
 ## When to use
 
-Per CLAUDE.md: never log secrets or full PII. After the participant-bucketing change, source_ids and content_paths can embed full email addresses, so any log line that prints them must redact first.
+Per AGENTS.md: never log secrets or full PII. After the participant-bucketing change, source_ids and content_paths can embed full email addresses, so any log line that prints them must redact first.

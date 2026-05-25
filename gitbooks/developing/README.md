@@ -20,7 +20,7 @@ If you just want to use the app, head to [Getting Started](../overview/getting-s
 | `gitbooks/` | This site (the public-facing docs).                                                                               |
 | `docs/`     | Older deep references not yet migrated to GitBook (memory pipeline diagrams, agent flows, etc.).                  |
 
-`CLAUDE.md` at the repo root is the source of truth for AI agents working on the codebase. Same rules apply to humans.
+[`AGENTS.md`](../../AGENTS.md) at the repo root is the source of truth for AI agents working on the codebase. Same rules apply to humans.
 
 ***
 

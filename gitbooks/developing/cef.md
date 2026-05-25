@@ -80,7 +80,7 @@ This is the bulk of `docs/TAURI_CEF_FINDINGS_AND_CHANGES.md`. It's why Slack sto
 
 ## The "no new JS injection" rule
 
-The rule is documented in [`CLAUDE.md`](../../CLAUDE.md): **migrated providers load with zero injected JavaScript**. All scraping happens natively over CDP from the scanner side.
+The rule is documented in [`AGENTS.md`](../../AGENTS.md): **migrated providers load with zero injected JavaScript**. All scraping happens natively over CDP from the scanner side.
 
 This matters because anything host-controlled that runs inside a third-party origin is an attack-surface liability. A persistent JS bridge inside Slack is one Slack update away from breaking, and one mistake away from leaking the bridge to attacker-controlled JS. CDP from outside the renderer is strictly better.
 
@@ -174,4 +174,4 @@ Each connected account gets its own profile and its own IDB. CDP can snapshot on
 ## See also
 
 * [`docs/TAURI_CEF_FINDINGS_AND_CHANGES.md`](../../docs/TAURI_CEF_FINDINGS_AND_CHANGES.md). the notification-permission deep dive.
-* [`CLAUDE.md`](../../CLAUDE.md). the canonical "no new JS injection" rule.
+* [`AGENTS.md`](../../AGENTS.md). the canonical "no new JS injection" rule.

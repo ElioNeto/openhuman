@@ -13,7 +13,7 @@ __BODY__
 
 # Workflow
 
-Follow `CLAUDE.md` and `AGENTS.md` for everything below. Be deliberate — plan first, implement small, test as you go.
+Follow `AGENTS.md` for everything below. Be deliberate — plan first, implement small, test as you go.
 
 ## 1. Specify
 
@@ -39,7 +39,7 @@ When adding/renaming RPC methods, extend `tests/json_rpc_e2e.rs` (`scripts/test-
 
 - React screens/state live in `app/src/`. Use `core_rpc_relay` / `coreRpcClient` to call the core — never duplicate business logic in TypeScript.
 - Frontend `VITE_*` reads go through `app/src/utils/config.ts`. Never `import.meta.env` directly elsewhere.
-- No dynamic `import()` in production `app/src` code (see CLAUDE.md exceptions for test/setup/config files).
+- No dynamic `import()` in production `app/src` code (see AGENTS.md exceptions for test/setup/config files).
 - `app/src-tauri` is desktop-only. No Android/iOS branches.
 - CEF webviews must not grow new JS injection — use CEF handlers + CDP from the scanner side instead.
 

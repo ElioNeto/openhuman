@@ -21,7 +21,7 @@ OpenHuman 在 [github.com/tinyhumansai/openhuman](https://github.com/tinyhumansa
 | `gitbooks/` | 本站（面向公众的文档）。 |
 | `docs/` | 尚未迁移到 GitBook 的深层参考资料（记忆流水线图、智能体流程等）。 |
 
-仓库根目录的 `CLAUDE.md` 是给在该代码库上工作的 AI 智能体的权威参考。人类也适用同样的规则。
+仓库根目录的 [`AGENTS.md`](../../AGENTS.md) 是给在该代码库上工作的 AI 智能体的权威参考。人类也适用同样的规则。
 
 ***
 
