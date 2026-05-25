@@ -33,7 +33,9 @@ use crate::openhuman::capability_provider::{
 // ---------------------------------------------------------------------------
 
 /// Risk level for a generated tool, based on the capabilities it exposes.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize, Default)]
+#[derive(
+    Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize, Default,
+)]
 #[serde(rename_all = "snake_case")]
 pub enum ToolRiskLevel {
     /// Read-only information retrieval — low risk.
